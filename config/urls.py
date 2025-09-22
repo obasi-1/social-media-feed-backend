@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.http import HttpResponse
 from django.urls import path, include
 from users.views import PostListCreateView
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
@@ -16,5 +17,6 @@ urlpatterns = [
     path("api/posts/", PostListCreateView.as_view(), name="posts"),
     path("api/posts/<int:post_id>/like/", LikePostView.as_view(), name="like-post"),
     path("api/profile/", profile_view, name="profile"),
+    path("", lambda request: HttpResponse("Welcome to the Social Media API. Go to /api/")),
 
 ]
