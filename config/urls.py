@@ -13,13 +13,10 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Social Media API",
         default_version="v1",
-        description="API documentation for the Social Media project",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="youremail@example.com"),
-        license=openapi.License(name="BSD License"),
+        description="API documentation for Social Media project",
     ),
-    public=True,
-    permission_classes=(permissions.AllowAny,),
+    public=True,   # 🔑 This makes it public
+    permission_classes=(permissions.AllowAny,),  # 🔑 No login required
 )
 
 
@@ -34,8 +31,9 @@ urlpatterns = [
     path("api/posts/", PostListCreateView.as_view(), name="posts"),
     path("api/posts/<int:post_id>/like/", LikePostView.as_view(), name="like-post"),
     path("api/profile/", profile_view, name="profile"),
-    path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
-    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     path("", lambda request: redirect("/api/")),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    # ... other paths
 
 ]
