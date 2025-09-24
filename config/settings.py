@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "rest_framework",     # Django REST framework
     "rest_framework_simplejwt",
     "users",               # your custom users app
+    "drf_yasg",
 ]
 
 AUTH_USER_MODEL = "users.User"
